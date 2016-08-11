@@ -1,0 +1,48 @@
+.m-t-5 {
+    margin-top: 5px;
+}
+
+.m-t-3 {
+    margin-top: 3px;
+}
+
+.m-b-5 {
+    margin-bottom: 5px;
+}
+
+.m-r-3 {
+    margin-right: 3px;
+}
+
+.messageRow {
+    border-bottom: solid 1px #ccc;
+    font-size: 12px;
+    padding: 10px;
+}
+
+.logo-img {
+    height: 20px;
+}
+
+.left {
+    border-right: solid 1px #ccc;
+}
+
+.from-col {
+    color: green;
+    font-weight: bold;
+}
+
+.subject-col {
+    word-wrap: break-word;
+    font-weight: bold;
+}
+
+.date-col {
+    text-align: right;
+    color: gray;
+}
+
+.active{
+    color:red;
+}

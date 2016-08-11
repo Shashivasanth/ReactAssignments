@@ -1,0 +1,28 @@
+{
+  "name": "gmailapp ",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Shashi",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "*",
+    "gulp": "*",
+    "gulp-concat": "^2.6.0",
+    "gulp-html-replace": "^1.6.0",
+    "gulp-react": "^3.1.0",
+    "gulp-uglify": "^1.5.3",
+    "object-assign": "*",
+    "reactify": "*",
+    "vinyl-source-stream": "*"
+  },
+  "dependencies": {
+    "gulp-livereload": "^3.8.1",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0",
+    "react-router": "^2.6.0"
+  }
+}
