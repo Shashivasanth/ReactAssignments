@@ -7,6 +7,21 @@ module.exports = React.createClass({
         console.log(val);
         this.props.deleteFunc(val);
     },
+
+    ViewMessage: function(){
+        console.log ("calling ViewMessage function");
+        $(function () {
+           $('#viewMessageModal-'+this.props.index).modal('toggle');
+        });
+    },
+
+    CloseViewMessage: function(){
+        console.log ("closing ViewMessage" + this.props.index);
+        $(function () {
+           $('#viewMessageModal-'+this.props.index).modal('hide');
+        });
+    },
+
     send: function() {
         var self = this;
         var accessToken = localStorage.getItem('gToken');
@@ -32,6 +47,7 @@ module.exports = React.createClass({
                 console.log(data);
                 $(function () {
                    $('#reply-modal-'+self.props.index).modal('toggle');
+
                 });
             },
             error: function(err) {
@@ -42,7 +58,9 @@ module.exports = React.createClass({
     render: function() {
         console.log('rendering snippet');
         return (
+
             <div>
+
                 <div id={'reply-modal-'+this.props.index} className="modal fade" role="dialog">
                     <div className="modal-dialog">
                         <div className="modal-content">
@@ -71,17 +89,37 @@ module.exports = React.createClass({
                     <div className='col-md-3 from-col'>
                         {this.props.from}
                     </div>
-                    <div className='col-md-4 subject-col'>
-                        {this.props.subject}
+                    <div className='col-md-4 subject-col'>  <a href='#' data-toggle="modal" data-target={'#viewMessageModal-'+this.props.index} onClick={this.ViewMessage} > {this.props.subject} </a>
                     </div>
                     <div className='col-md-3 date-col'>
                         {this.props.date}
                     </div>
                     <div className='col-md-2'>
                         <button className='btn btn-default m-t-3 m-r-3 pull-right' value={this.props.index} onClick={this.delete} id={'reply-'+this.props.index}><span className='glyphicon glyphicon-remove'></span></button>
-                        <button className='btn btn-default m-t-3 m-r-3 pull-right' data-toggle="modal" data-target={'#reply-modal-'+this.props.index}><span className='glyphicon glyphicon-share-alt'></span></button>
+                        <button className='btn btn-default m-t-3 m-r-3 pull-right' data-toggle="modal" data-dismiss="modal" data-target={'#reply-modal-'+this.props.index}><span className='glyphicon glyphicon-share-alt'></span></button>
                     </div>
                 </div>
+
+                <div id={'viewMessageModal-'+this.props.index} className="modal fade" role="dialog">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                            <button type="button" className="close" data-dismiss="modal">X</button>
+                            <h4 className="modal-title">{this.props.subject}</h4>
+                            </div>
+                            <div className="modal-body">
+                                <div className="form-group">
+                                    <label htmlFor="usr">{this.props.from}</label><br/>
+                                    <i>{this.props.snippet}</i>
+                                </div>
+                            </div>
+                            <div className="modal-footer">
+                            <button type='button' className='btn btn-default' data-toggle="modal" data-dismiss="modal" data-target={'#reply-modal-'+this.props.index} onClick={this.CloseViewMessage}>Reply</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         );
     }

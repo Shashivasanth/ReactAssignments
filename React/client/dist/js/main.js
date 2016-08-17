@@ -21106,6 +21106,21 @@ module.exports = React.createClass({displayName: "exports",
         console.log(val);
         this.props.deleteFunc(val);
     },
+
+    ViewMessage: function(){
+        console.log ("calling ViewMessage function");
+        $(function () {
+           $('#viewMessageModal-'+this.props.index).modal('toggle');
+        });
+    },
+
+    CloseViewMessage: function(){
+        console.log ("closing ViewMessage" + this.props.index);
+        $(function () {
+           $('#viewMessageModal-'+this.props.index).modal('hide');
+        });
+    },
+
     send: function() {
         var self = this;
         var accessToken = localStorage.getItem('gToken');
@@ -21131,6 +21146,7 @@ module.exports = React.createClass({displayName: "exports",
                 console.log(data);
                 $(function () {
                    $('#reply-modal-'+self.props.index).modal('toggle');
+
                 });
             },
             error: function(err) {
@@ -21141,7 +21157,9 @@ module.exports = React.createClass({displayName: "exports",
     render: function() {
         console.log('rendering snippet');
         return (
+
             React.createElement("div", null, 
+
                 React.createElement("div", {id: 'reply-modal-'+this.props.index, className: "modal fade", role: "dialog"}, 
                     React.createElement("div", {className: "modal-dialog"}, 
                         React.createElement("div", {className: "modal-content"}, 
@@ -21170,17 +21188,37 @@ module.exports = React.createClass({displayName: "exports",
                     React.createElement("div", {className: "col-md-3 from-col"}, 
                         this.props.from
                     ), 
-                    React.createElement("div", {className: "col-md-4 subject-col"}, 
-                        this.props.subject
+                    React.createElement("div", {className: "col-md-4 subject-col"}, "  ", React.createElement("a", {href: "#", "data-toggle": "modal", "data-target": '#viewMessageModal-'+this.props.index, onClick: this.ViewMessage}, " ", this.props.subject, " ")
                     ), 
                     React.createElement("div", {className: "col-md-3 date-col"}, 
                         this.props.date
                     ), 
                     React.createElement("div", {className: "col-md-2"}, 
                         React.createElement("button", {className: "btn btn-default m-t-3 m-r-3 pull-right", value: this.props.index, onClick: this.delete, id: 'reply-'+this.props.index}, React.createElement("span", {className: "glyphicon glyphicon-remove"})), 
-                        React.createElement("button", {className: "btn btn-default m-t-3 m-r-3 pull-right", "data-toggle": "modal", "data-target": '#reply-modal-'+this.props.index}, React.createElement("span", {className: "glyphicon glyphicon-share-alt"}))
+                        React.createElement("button", {className: "btn btn-default m-t-3 m-r-3 pull-right", "data-toggle": "modal", "data-dismiss": "modal", "data-target": '#reply-modal-'+this.props.index}, React.createElement("span", {className: "glyphicon glyphicon-share-alt"}))
+                    )
+                ), 
+
+                React.createElement("div", {id: 'viewMessageModal-'+this.props.index, className: "modal fade", role: "dialog"}, 
+                    React.createElement("div", {className: "modal-dialog"}, 
+                        React.createElement("div", {className: "modal-content"}, 
+                            React.createElement("div", {className: "modal-header"}, 
+                            React.createElement("button", {type: "button", className: "close", "data-dismiss": "modal"}, "X"), 
+                            React.createElement("h4", {className: "modal-title"}, this.props.subject)
+                            ), 
+                            React.createElement("div", {className: "modal-body"}, 
+                                React.createElement("div", {className: "form-group"}, 
+                                    React.createElement("label", {htmlFor: "usr"}, this.props.from), React.createElement("br", null), 
+                                    React.createElement("i", null, this.props.snippet)
+                                )
+                            ), 
+                            React.createElement("div", {className: "modal-footer"}, 
+                            React.createElement("button", {type: "button", className: "btn btn-default", "data-toggle": "modal", "data-dismiss": "modal", "data-target": '#reply-modal-'+this.props.index, onClick: this.CloseViewMessage}, "Reply")
+                            )
+                        )
                     )
                 )
+
             )
         );
     }
