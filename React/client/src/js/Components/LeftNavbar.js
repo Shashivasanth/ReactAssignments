@@ -42,6 +42,7 @@ module.exports = React.createClass({
                         },
                         success: function(data) {
                             console.log('data', data);
+                            var id = data.id;
                             var snippet = data.snippet;
                             var headers =  data.payload.headers;
                             var from='';
@@ -69,6 +70,7 @@ module.exports = React.createClass({
                                 }
                             });
                             messages.push({
+                                id: id,
                                 from: from,
                                 to: to,
                                 date: date,

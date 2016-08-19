@@ -1,57 +1,19 @@
-/** @jsx React.DOM */
-console.log('Start')
+console.log("start");
 var App = React.createClass({
-    componentWillMount: function(){
-      console.log('componentWillMount');
-    },
-    
-    componentDidMount: function(){
-      console.log('componentDidMount');
-    },
-    
-    getInitialState: function(){
-      return { status: true}
+
+    getInitialState:function(){
+        console.log('getInitialState');
+        return {status: true};
     },
 
-    getDefaultProps: function(){
-      return {name: 'John'};
-    },
-  
-    componentWillReceiveProps: function(nextProps){
-      console.log('componentWillReceiveProps');
+    getDefaultProps:function(){
+        console.log('getDefaultProps');
+        return{name: 'Shashi'};
     },
 
-    shouldComponentUpdate: function(nextProps, nextState){
-      console.log('shouldComponentUpdate');
-      return true;
-    },
-    
-    componentWillUpdate: function(){
-      console.log('componentWillUpdate');
-    },
-    
-    render: function() {
-      console.log('render');
-      return <h1 onClick={this.toggleState}>    
-             {this.state.status.toString()}
-             </h1>
-    },
-
-    componentWillUnmount: function(){
-      console.log('componentWillUnmount')
-    },
-    
-    toggleState: function() {
-      this.setState({status: !this.state.status})
+    render:function(){
+        console.log('render');
+        return {};
     }
-    });
 
-// componentWillMount
-// componentDidMount
-// componentWillReceiveProps(object nextProps)
-// boolean shouldComponentUpdate(object nextProps, object nextState)
-// componentWillUpdate(object nextProps, object nextState)
-// componentDidUpdate(object prevProps, object prevState)
-// componentWillUnmount()
-// React.unmountComponentAtNode(document.body)
-React.renderComponent(<App name='Vipul'/>, document.body);
+});

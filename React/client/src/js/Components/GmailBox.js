@@ -3,6 +3,7 @@ var LeftNavbar = require('./LeftNavbar');
 var TopNavbar = require('./TopNavbar');
 var MessageBar = require('./MessageBar');
 var ComposeModal = require('./Compose');
+var ViewMessagesFromDB = require('./ViewMessagesFromDB');
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -26,9 +27,11 @@ module.exports = React.createClass({
       <div>
         <ComposeModal/>
         <TopNavbar labelFunc={this.labelFunc} messageFunc={this.messageFunc}/>
+
         <div className='row'>
             <div className='col-md-1 left'>
                 <LeftNavbar labels={this.state.labels} messageFunc={this.messageFunc}/>
+
             </div>
             <div className='col-md-11 right'>
                 <div className='container-fluid'>
@@ -37,6 +40,7 @@ module.exports = React.createClass({
             </div>
         </div>
       </div>
+
     );
   }
 });

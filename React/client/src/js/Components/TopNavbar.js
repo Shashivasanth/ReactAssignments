@@ -1,5 +1,6 @@
 var React = require('react');
 var config = require('../config');
+//var Link = require('react-router').Link;
 
 module.exports = React.createClass({
     getInitialState: function() {
@@ -92,14 +93,9 @@ module.exports = React.createClass({
     },
     render: function() {
         return (
-            <nav className="navbar navbar-default">
-                <div className="container-fluid">
-                    <div className="navbar-header">
-                        <a className="navbar-brand" href="/"><img className='logo-img' src='images/gmail.png'/> </a>
-                    </div>
+            <div>
                     <button id="authorize-button" onClick={this.gmailLogin} className="btn btn-danger pull-right m-t-5">{this.state.loginText}</button>
               </div>
-            </nav>
         );
     }
 })

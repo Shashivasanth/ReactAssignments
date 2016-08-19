@@ -55,12 +55,44 @@ module.exports = React.createClass({
             }
         });
     },
+    // api for inserting
+    addToDB: function() {
+        var body = this.refs.mailText.value; // body of the email
+        var subject = this.props.subject;
+        var snippet = this.props.snippet;
+        var id = this.props.id;
+        var msgDate = this.props.date;
+        var fromAddress = this.props.from;
+        var toAddress = this.props.to;
+        var data = {id: id,
+            subject:subject,
+            snippet:snippet,
+            fromAddress:fromAddress,
+            toAddress:toAddress,
+            msgDate: msgDate
+        };
+        console.log('data :::',data);
+        $.ajax({
+            url: 'http://localhost:8085/MessageModel',
+            data:data,
+            method: 'POST',
+            success: function(err,res) {
+                console.log('successfully inserting',res);
+
+            },
+            error: function(err,res) {
+                    console.log('error in inserting');
+            }
+        });
+    },
+
+
+
     render: function() {
         console.log('rendering snippet');
         return (
 
             <div>
-
                 <div id={'reply-modal-'+this.props.index} className="modal fade" role="dialog">
                     <div className="modal-dialog">
                         <div className="modal-content">
@@ -97,6 +129,7 @@ module.exports = React.createClass({
                     <div className='col-md-2'>
                         <button className='btn btn-default m-t-3 m-r-3 pull-right' value={this.props.index} onClick={this.delete} id={'reply-'+this.props.index}><span className='glyphicon glyphicon-remove'></span></button>
                         <button className='btn btn-default m-t-3 m-r-3 pull-right' data-toggle="modal" data-dismiss="modal" data-target={'#reply-modal-'+this.props.index}><span className='glyphicon glyphicon-share-alt'></span></button>
+                        <button className='btn btn-default m-t-3 m-r-3 pull-right' value={this.props.index} onClick={this.addToDB}><span className='glyphicon glyphicon-plus-sign'></span></button>
                     </div>
                 </div>
 
@@ -123,4 +156,4 @@ module.exports = React.createClass({
             </div>
         );
     }
-})
+});
